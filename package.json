@@ -6,7 +6,11 @@
     "url2text": "./bin/url2text"
   },
   "preferGlobal": "true",
+  "keywords": [
+    "cli"
+  ],
   "author": "TheConnMan",
+  "repository": "TheConnMan/url2text",
   "license": "MIT",
   "dependencies": {
     "caporal": "^0.3.0",
