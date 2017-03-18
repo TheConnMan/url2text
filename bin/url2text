@@ -11,6 +11,7 @@ prog
   .option('--location <location>', 'Write URL contents to <location>', /.*/, 'url-to-text.txt')
   .option('--interval <interval>', 'Refresh interval in ms', prog.INT, 5000)
   .action(function(args, options, logger) {
+    updateFile(args.url, args.location || 'url-to-text.txt', logger);
     setInterval(function() {
       updateFile(args.url, args.location || 'url-to-text.txt', logger);
     }, args.interval || 5000);
