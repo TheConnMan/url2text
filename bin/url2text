@@ -12,14 +12,15 @@ prog
   .option('--interval <interval>', 'Refresh interval in ms', prog.INT, 5000)
   .action(function(args, options, logger) {
     setInterval(function() {
-      updateFile(args.url, args.location || 'url-to-text.txt');
+      updateFile(args.url, args.location || 'url-to-text.txt', logger);
     }, args.interval || 5000);
   });
 
 prog.parse(process.argv);
 
-function updateFile(url, fileLocation) {
+function updateFile(url, fileLocation, logger) {
   return request(url, (err, response, body) => {
+    logger.debug('Updated ' + fileLocation + ' at ' + new Date().toISOString());
     fs.writeFileSync(fileLocation, body);
   });
 }
