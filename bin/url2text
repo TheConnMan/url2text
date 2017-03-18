@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+var pkg = require('../package.json');
+var request = require('request');
+var fs = require('fs');
+
+const prog = require('caporal');
+prog
+  .version(pkg.version)
+  .description(pkg.description)
+  .argument('<url>', 'URL to pull content from')
+  .option('--location <location>', 'Write URL contents to <location>', /.*/, 'url-to-text.txt')
+  .option('--interval <interval>', 'Refresh interval in ms', prog.INT, 5000)
+  .action(function(args, options, logger) {
+    setInterval(function() {
+      updateFile(args.url, args.location || 'url-to-text.txt');
+    }, args.interval || 5000);
+  });
+
+prog.parse(process.argv);
+
+function updateFile(url, fileLocation) {
+  return request(url, (err, response, body) => {
+    fs.writeFileSync(fileLocation, body);
+  });
+}

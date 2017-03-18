@@ -1,0 +1,15 @@
+{
+  "name": "url2text",
+  "version": "0.1.0",
+  "description": "Command line utility for polling a URL and writing the contents to a file",
+  "bin": {
+    "url2text": "./bin/url2text"
+  },
+  "preferGlobal": "true",
+  "author": "TheConnMan",
+  "license": "MIT",
+  "dependencies": {
+    "caporal": "^0.3.0",
+    "request": "^2.81.0"
+  }
+}
